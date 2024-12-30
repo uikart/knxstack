@@ -13,7 +13,11 @@
  *
  */
 
+#include <stdint.h>
+#include "knx_config.h"
 #include <knx_platform.h>
+#include <knx_data_layer.h>
+
 
 typedef enum {
 	KNXS_STATE_UNKNOWN = 0,
@@ -26,11 +30,12 @@ typedef enum {
 
 typedef struct {
 	knx_stack_state_t state;
-	knx_device_t device;
-} *knx_stack_t;
+	const knx_device_t *device;
+	knx_data_layer_t *data_layer;
+} knx_stack_t;
 
-knx_stack_t knx_init(knx_device_t device);
-int knx_loop(knx_stack_t stack);
+knx_stack_t *knx_init(const knx_device_t *device);
+int knx_loop(knx_stack_t *stack);
 
 #endif /* KNXSTACK_H_ */
 

@@ -14,20 +14,20 @@
 #ifndef KNX_KNXSTACK_KNX_PLATFORM_H_
 #define KNX_KNXSTACK_KNX_PLATFORM_H_
 #include <knx_config.h>
+#include <stdint.h>
+
+uint32_t get_ticks(void);
+
 
 /* ZEPHYR */
 #ifdef CONFIG_OS_ZEPHYR
-#include <zephyr/device.h>
-
-typedef  struct device* knx_device_t;
+#include <plat_zephyr.h>
 #endif /* CONFIG_OS_ZEPHYR */
 
 /* LINUX */
 
-#include <plat_linux.h>
-
 #ifdef CONFIG_OS_LINUX
-typedef void *knx_device_t;
+#include <plat_linux.h>
 #endif /* CONFIG_OS_LINUX */
 
 #endif /* KNX_KNXSTACK_KNX_PLATFORM_H_ */
